@@ -1,0 +1,26 @@
+{
+  "name": "langchainframework",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "run": "tsx agent1.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "description": "",
+  "dependencies": {
+    "@langchain/openai": "^0.0.27",
+    "@openrouter/sdk": "^0.2.11",
+    "axios": "^1.13.2",
+    "dotenv": "^16.4.5",
+    "langchain": "^0.2.15",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.1"
+  }
+}
