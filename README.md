@@ -1,3 +1,5 @@
+# Learn LangChain 1.0 Typescript with AI Agents, Tools, RAG Pipelines, Agentic RAG, MCP Integration, LangGraph Deployment
+
 # OpenRouter & Ollama – TypeScript Examples
 
 This repository contains **three working TypeScript examples** showing different ways to interact with Large Language Models (LLMs):
