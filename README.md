@@ -266,3 +266,6 @@ MIT License — free to use and modify.
 This repository supports the blog post:
 
 **“Streaming LLM Responses with OpenRouter SDK in Node.js (TypeScript)”**
+
+
+npx tsx ./src/langchain/3_component_agents/1_createAgent_tools.ts | tee raw.log
