@@ -35,6 +35,21 @@ import { z } from "zod";
 import { createAgent } from "langchain";
 
 /****************************************************************************************
+ * DATABASE (INFRASTRUCTURE – NOT PART OF RUNTIME TYPE)
+ ****************************************************************************************/
+const db = {
+  users: {
+    async getById(userId: string) {
+      const users: Record<string, { city: string }> = {
+        "1": { city: "New York" },
+        "2": { city: "San Francisco" },
+      };
+      return users[userId] ?? { city: "Unknown" };
+    },
+  },
+};
+
+/****************************************************************************************
  * RUNTIME CONFIG OBJECT
  * --------------------------------------------------------------------------------------
  * This config is passed ONLY at invocation time.
@@ -47,7 +62,7 @@ import { createAgent } from "langchain";
 const config = {
   context: {
     // Example: extracted from JWT / session / request header
-    userId: "user-5678",
+    userId: "1",
   },
 };
 
@@ -72,16 +87,13 @@ const getUserLocation = tool(
   // Executor
   // 1st param: Tool input arguments from the LLM. Source: From model output
   // 2nd param: Runtime execution context. Source: From agent.invoke(..., config)
-  (_, config) => {
+  async (_, config) => {
     const userId = config.context?.userId;
 
-    // Simulated DB lookup
-    const userLocations: Record<string, string> = {
-      "user-1234": "New York",
-      "user-5678": "San Francisco",
-    };
+    // ✅ Correct pattern: DB accessed via closure
+    const user = await db.users.getById(userId);
 
-    return userLocations[userId] || "Unknown";
+    return user.city;
   },
   {
     name: "get_user_location",
