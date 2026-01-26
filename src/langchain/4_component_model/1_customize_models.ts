@@ -189,6 +189,7 @@ const agent = createAgent({
   model: llm,
   tools: [getUserLocation, getWeather],
   responseFormat,
+  systemPrompt
 });
 
 /****************************************************************************************
@@ -204,7 +205,6 @@ const agent = createAgent({
 const response = await agent.invoke(
   {
     messages: [
-      { role: "system", content: systemPrompt },
       { role: "user", content: "What is the weather outside?" },
     ],
   },
